@@ -17,4 +17,13 @@ const connectDB = async () => {
   }
 };
 
-module.exports = { sequelize, connectDB };
+const syncDB = async () => {
+  try {
+    await sequelize.sync({ alter: true });
+    console.log('Base de datos sincronizada');
+  } catch (err) {
+    console.error('Error al sincronizar la base de datos:', err);
+  }
+};
+
+module.exports = { sequelize, connectDB, syncDB };
